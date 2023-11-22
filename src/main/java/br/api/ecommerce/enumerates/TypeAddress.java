@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum TypeAddress {
 
     PRINCIPAL("principal"),
-    SEDUNDARIO("secundario");
+    SECUNDARIO("secundario");
 
     private final String value;
 

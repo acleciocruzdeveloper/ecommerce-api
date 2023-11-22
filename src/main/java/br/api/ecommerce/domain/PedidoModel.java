@@ -18,8 +18,9 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "pedido")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Pedido implements Serializable {
+public class PedidoModel implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -4534836895370221144L;
@@ -29,7 +30,7 @@ public class Pedido implements Serializable {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", orphanRemoval = true)
-    private List<Produto> produtos;
+    private List<ProdutoModel> produtos;
 
     private int totalDeItems;
     private boolean entrega;

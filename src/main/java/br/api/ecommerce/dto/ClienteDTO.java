@@ -15,8 +15,8 @@ public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 8714532447785598898L;
 
     private String nome;
-    private String lastNameDTO;
-    private String emailDTO;
-    private String telefoneDTO;
-    private List<EnderecoDTO> enderecoDTO;
+    private String lastName;
+    private String email;
+    private String telefone;
+    private List<EnderecoDTO> enderecos;
 }

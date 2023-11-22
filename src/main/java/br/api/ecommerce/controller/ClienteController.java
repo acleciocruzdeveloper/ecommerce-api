@@ -41,8 +41,8 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes")
-    public ResponseEntity<List<ClienteModel>> getAll() {
-        List<ClienteModel> allClientes = service.getAllClientes();
+    public ResponseEntity<List<ClienteDTO>> getAll() {
+        List<ClienteDTO> allClientes = service.getAllClientes();
         return ResponseEntity.ok(allClientes);
     }
 
