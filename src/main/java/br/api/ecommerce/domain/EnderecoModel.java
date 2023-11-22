@@ -1,5 +1,6 @@
 package br.api.ecommerce.domain;
 
+import br.api.ecommerce.enumerates.TypeAddress;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,8 +16,9 @@ public class EnderecoModel {
     @Column(name = "id", columnDefinition = "uuid", updatable = false)
     private UUID id;
 
-    @Column(name = "principal")
-    private boolean principal;
+    @Column(name = "tipo")
+    @Enumerated(EnumType.STRING)
+    private TypeAddress tipoEndereco;
 
     @Column(name = "cep")
     private String cep;
@@ -42,4 +44,5 @@ public class EnderecoModel {
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteModel cliente;
+
 }

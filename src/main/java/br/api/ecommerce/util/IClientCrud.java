@@ -12,5 +12,5 @@ public interface IClientCrud {
     @Transactional
     void novoCliente(ClienteDTO clienteDTO);
 
-    List<ClienteModel> getAllClientes();
+    List<ClienteDTO> getAllClientes();
 }

@@ -4,6 +4,7 @@ import br.api.ecommerce.domain.ClienteModel;
 import br.api.ecommerce.domain.EnderecoModel;
 import br.api.ecommerce.dto.ClienteDTO;
 import br.api.ecommerce.dto.EnderecoDTO;
+import br.api.ecommerce.enumerates.TypeAddress;
 import br.api.ecommerce.exceptions.ClienteException;
 import br.api.ecommerce.repositories.IClienteRepository;
 import br.api.ecommerce.repositories.IEnderecoRepository;
@@ -36,18 +37,19 @@ public class ClienteService implements IClientCrud {
 
     @Override
     public void novoCliente(ClienteDTO clienteDTO) {
-        clienteRepository.findByEmail(clienteDTO.getEmailDTO())
+        clienteRepository.findByEmail(clienteDTO.getEmail())
                 .ifPresent(existing -> {
                     log.error("e-mail ja cadastrado");
                     throw new ClienteException("Cliente ja cadastrado");
                 });
         ClienteModel clienteModel = converterClienteDTOParaModel(clienteDTO);
 
-        List<EnderecoModel> enderecosModel = Optional.ofNullable(clienteDTO.getEnderecoDTO())
+        List<EnderecoModel> enderecosModel = Optional.ofNullable(clienteDTO.getEnderecos())
                 .orElse(Collections.emptyList())
                 .stream()
                 .map(this::converterEnderecoDTOParaModel)
                 .collect(Collectors.toList());
+
 
         enderecosModel.forEach(endereco -> endereco.setCliente(clienteModel));
         clienteModel.setEnderecos(enderecosModel);
@@ -56,17 +58,25 @@ public class ClienteService implements IClientCrud {
         enderecoRepository.saveAll(enderecosModel);
     }
 
+    @Override
+    public List<ClienteDTO> getAllClientes() {
+        List<ClienteModel> clienteModels = clienteRepository.findAll();
+        return clienteModels.stream()
+                .map(this::converterClienteModelParaDTO)
+                .collect(Collectors.toList());
+    }
+
     private ClienteModel converterClienteDTOParaModel(ClienteDTO clienteDTO) {
         return modelMapper.map(clienteDTO, ClienteModel.class);
     }
 
     private EnderecoModel converterEnderecoDTOParaModel(EnderecoDTO enderecoDTO) {
         return modelMapper.map(enderecoDTO, EnderecoModel.class);
+
     }
 
-    @Override
-    public List<ClienteModel> getAllClientes() {
-        return clienteRepository.findAll();
+    private ClienteDTO converterClienteModelParaDTO(ClienteModel clienteModel) {
+        return modelMapper.map(clienteModel, ClienteDTO.class);
     }
 
 }
