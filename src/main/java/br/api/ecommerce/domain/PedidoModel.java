@@ -29,9 +29,6 @@ public class PedidoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", orphanRemoval = true)
-    private List<ProdutoModel> produtos;
-
     private int totalDeItems;
     private boolean entrega;
     private BigDecimal valorEntrega;

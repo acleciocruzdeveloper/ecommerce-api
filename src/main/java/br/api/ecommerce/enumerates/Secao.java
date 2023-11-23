@@ -1,5 +1,8 @@
 package br.api.ecommerce.enumerates;
 
+import lombok.Getter;
+
+@Getter
 public enum Secao {
 
     SALGADOS("salgados"),
@@ -7,12 +10,11 @@ public enum Secao {
     PORCOES("porcoes"),
     BEBIDAS("bebidas"),
     SOBREMESA("sobremesas"),
+    MASSAS("massas"),
     COMBOS("combos");
-    private String value;
+
+    private final String value;
     Secao(String value) {
         this.value = value;
-    }
-    public String getValue() {
-        return value;
     }
 }
