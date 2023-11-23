@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "produto")
-public class ProdutoModel implements Serializable {
+public final class ProdutoModel implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4523784053991839641L;
@@ -26,13 +26,9 @@ public class ProdutoModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @Enumerated(EnumType.STRING)
     private Secao secao;
-    private String produto;
+    private String nome;
     private BigDecimal valorUnitario;
-    private int quantidade;
-    private int totalItems;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_id")
-    private PedidoModel pedido;
 }
