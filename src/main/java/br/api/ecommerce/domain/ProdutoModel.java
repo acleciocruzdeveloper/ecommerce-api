@@ -17,20 +17,18 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produto implements Serializable {
+@Table(name = "produto")
+public final class ProdutoModel implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 4523784053991839641L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private Secao secao;
-    private String produto;
-    private BigDecimal valorUnitario;
-    private int quantidade;
-    private int totalItems;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
+    @Enumerated(EnumType.STRING)
+    private Secao secao;
+    private String nome;
+    private BigDecimal valorUnitario;
+
 }

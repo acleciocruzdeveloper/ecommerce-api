@@ -44,6 +44,12 @@
 			<version>3.0.0</version> <!-- Verifique a versão mais recente no repositório Maven -->
 		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 		<!-- ModelMapper -->
 		<dependency>
 			<groupId>org.modelmapper</groupId>

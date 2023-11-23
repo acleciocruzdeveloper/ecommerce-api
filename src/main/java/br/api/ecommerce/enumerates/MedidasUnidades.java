@@ -3,15 +3,14 @@ package br.api.ecommerce.enumerates;
 import lombok.Getter;
 
 @Getter
-public enum TypeAddress {
+public enum MedidasUnidades {
 
-    PRINCIPAL("principal"),
-    SECUNDARIO("secundario");
+    KG("kg"),
+    PRATO("prato"),
+    UNIDADE("u");
 
     private final String value;
-
-    TypeAddress(String value) {
+    MedidasUnidades(String value) {
         this.value = value;
     }
-
 }
